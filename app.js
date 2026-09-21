@@ -1,12 +1,7 @@
-// ==============================
-// DATOS DEL PORTFOLIO
-// ==============================
-
 const profile = {
     name: "José Félix",
     title: "Estudiante de Ingeniería Informática",
-    description:
-        "Estudiante de Ingeniería Informática en la Universidad de Castilla-La Mancha, interesado en el desarrollo de software, desarrollo de IA y análisis de datos y tecnologías web.",
+    description: "Estudiante de Ingeniería Informática en la Universidad de Castilla-La Mancha, apasionado por el desarrollo de software, inteligencia artificial, análisis de datos y tecnologías web avanzadas.",
     image: "profile.jpg",
     github: "https://github.com/JoseFelixBarbRoj",
     linkedin: "https://www.linkedin.com/in/tu-usuario"
@@ -15,12 +10,10 @@ const profile = {
 const education = [
     {
         title: "Grado en Ingeniería Informática",
-        institution:
-            "Escuela Superior de Informática — Universidad de Castilla-La Mancha",
+        institution: "Escuela Superior de Informática — Universidad de Castilla-La Mancha",
         start_date: "2023",
         end_date: "2027",
-        description:
-            "Formación en Ingeniería Informática, adquiriendo conocimientos en programación, desarrollo de software, sistemas, bases de datos, desarrollo web y análisis de datos."
+        description: "Formación en Ingeniería Informática, adquiriendo conocimientos sólidos en programación, ingeniería del software, sistemas operativos, bases de datos, arquitecturas web y machine learning."
     }
 ];
 
@@ -84,16 +77,14 @@ const experience = [
         position: "Prácticas",
         start_date: "2026",
         end_date: "Actualidad",
-        description:
-            "Desarrollo de un transformer para predicción de rutas marítimas en áreas de interés."
+        description: "Desarrollo de un transformer avanzado para la predicción de rutas marítimas en áreas de interés estratégico."
     }
 ];
 
 const projects = [
     {
         name: "PeTracker",
-        description:
-            "Web para poner en contacto protectoras con dueños de mascotas perdidas. La aplicación realiza matching entre la imagen subida por protectoras con la imagen reportada por el dueño, haciendo uso de un modelo de IA integrado. También se integra OpenStreetMap para visualizar en mapa todos los reportes.",
+        description: "Web conectando protectoras con dueños de mascotas perdidas. Incluye matching mediante modelo de IA integrado y visualización interactiva de reportes en mapas con OpenStreetMap.",
         technologies: [
             { name: "HTML", icon: "devicon-html5-plain" },
             { name: "CSS", icon: "devicon-css3-plain" },
@@ -102,46 +93,34 @@ const projects = [
             { name: "PyTorch", icon: "devicon-pytorch-plain" },
             { name: "MySQL", icon: "devicon-mysql-plain" }
         ],
-        github_url:
-            "https://github.com/JoseFelixBarbRoj/isi-PeTracker"
+        github_url: "https://github.com/JoseFelixBarbRoj/isi-PeTracker"
     },
     {
-        name: "Prototipo de sistema de etiquetado automático de imágenes",
-        description:
-            "En este proyecto se entrenó y utilizó un modelo basado en redes convolucionales para etiquetar automáticamente imágenes, en el ámbito de un problema de clasificación multiclase, concretamente imágenes de mariposas de más de 70 especies.",
+        name: "Sistema de Etiquetado Automático",
+        description: "Prototipo basado en redes convolucionales para clasificación multiclase de imágenes de más de 70 especies diferentes de mariposas.",
         technologies: [
             { name: "Python", icon: "devicon-python-plain" },
             { name: "PyTorch", icon: "devicon-pytorch-plain" }
         ],
-        github_url:
-            "https://github.com/JoseFelixBarbRoj/GSI"
+        github_url: "https://github.com/JoseFelixBarbRoj/GSI"
     },
     {
         name: "Aplicación TPV",
-        description:
-            "Aplicación tipo TPV para gestión de pedidos, ingredientes y clientes de un restaurante, aplicando principios generales de usabilidad en la interfaz. Se incluyen también los prototipos del diseño temprano.",
+        description: "Sistema TPV completo para gestión de pedidos, ingredientes y clientes en restaurantes, priorizando principios de usabilidad y diseño centrado en el usuario.",
         technologies: [
             { name: "C#", icon: "devicon-csharp-plain" }
         ],
-        github_url:
-            "https://github.com/JoseFelixBarbRoj/IPO"
+        github_url: "https://github.com/JoseFelixBarbRoj/IPO"
     },
     {
         name: "IPokemon",
-        description:
-            "Implementación de un videojuego de combate estilo Pokemon en C#, incluyendo una Pokedex para visualizar datos de todos los Pokemon seleccionables.",
+        description: "Videojuego de combate estilo Pokémon desarrollado en C#, incluyendo una Pokédex interactiva con estadísticas detalladas.",
         technologies: [
             { name: "C#", icon: "devicon-csharp-plain" }
         ],
-        github_url:
-            "https://github.com/DarioLopez6/IPOkemon1"
+        github_url: "https://github.com/DarioLopez6/IPOkemon1"
     }
 ];
-
-
-// ==============================
-// PERFIL
-// ==============================
 
 function loadProfile() {
     const description = document.getElementById("description");
@@ -149,211 +128,119 @@ function loadProfile() {
     const githubLink = document.getElementById("github-link");
     const linkedinLink = document.getElementById("linkedin-link");
 
-    if (description) {
-        description.textContent = profile.description;
-    }
-
+    if (description) description.textContent = profile.description;
     if (profileImage) {
         profileImage.src = profile.image;
         profileImage.alt = `Foto de ${profile.name}`;
     }
-
-    if (githubLink) {
-        githubLink.href = profile.github;
-    }
-
-    if (linkedinLink) {
-        linkedinLink.href = profile.linkedin;
-    }
+    if (githubLink) githubLink.href = profile.github;
+    if (linkedinLink) linkedinLink.href = profile.linkedin;
 }
-
-
-// ==============================
-// FORMACIÓN
-// ==============================
 
 function loadEducation() {
     const container = document.getElementById("education-container");
-
     if (!container) return;
-
     container.innerHTML = "";
 
     education.forEach((item) => {
         const element = document.createElement("article");
-
-        element.className = "education-item";
-
+        element.className = "timeline-item";
         element.innerHTML = `
-            <div class="education-date">
-                ${item.start_date} — ${item.end_date}
-            </div>
-
-            <div class="education-content">
+            <div class="timeline-date">${item.start_date} — ${item.end_date}</div>
+            <div class="timeline-content">
                 <h3>${item.title}</h3>
-
-                <p class="education-institution">
-                    ${item.institution}
-                </p>
-
-                <p>
-                    ${item.description}
-                </p>
+                <div class="timeline-subtitle">${item.institution}</div>
+                <p>${item.description}</p>
             </div>
         `;
-
         container.appendChild(element);
     });
 }
 
-
-// ==============================
-// TECNOLOGÍAS
-// ==============================
-
 function loadTechnologies() {
     const container = document.getElementById("technologies-container");
-
     if (!container) return;
-
     container.innerHTML = "";
 
     technologies.forEach((category) => {
         const categoryElement = document.createElement("article");
-
         categoryElement.className = "technology-item";
 
-        const items = category.items
-            .map(
-                (technology) => `
-                    <div class="technology">
-                        <i class="${technology.icon}"></i>
-                        <span>${technology.name}</span>
-                    </div>
-                `
-            )
-            .join("");
+        const items = category.items.map((tech) => `
+            <div class="technology">
+                <i class="${tech.icon}"></i>
+                <span>${tech.name}</span>
+            </div>
+        `).join("");
 
         categoryElement.innerHTML = `
             <h3>${category.name}</h3>
-
-            <div class="technology-items">
-                ${items}
-            </div>
+            <div class="technology-items">${items}</div>
         `;
-
         container.appendChild(categoryElement);
     });
 }
 
-
-// ==============================
-// EXPERIENCIA
-// ==============================
-
 function loadExperience() {
     const container = document.getElementById("experience-container");
-
     if (!container) return;
-
     container.innerHTML = "";
 
     experience.forEach((item) => {
         const element = document.createElement("article");
-
-        element.className = "experience-item";
-
+        element.className = "timeline-item";
         element.innerHTML = `
-            <div class="experience-date">
-                ${item.start_date} — ${item.end_date}
-            </div>
-
-            <div class="experience-content">
+            <div class="timeline-date">${item.start_date} — ${item.end_date}</div>
+            <div class="timeline-content">
                 <h3>${item.position}</h3>
-
-                <p class="experience-company">
-                    ${item.company}
-                </p>
-
-                <p>
-                    ${item.description}
-                </p>
+                <div class="timeline-subtitle">${item.company}</div>
+                <p>${item.description}</p>
             </div>
         `;
-
         container.appendChild(element);
     });
 }
 
-
-// ==============================
-// PROYECTOS
-// ==============================
-
 function loadProjects() {
     const container = document.getElementById("projects-container");
-
-    if (!container) {
-        console.error("No se encontró #projects-container");
-        return;
-    }
-
+    if (!container) return;
     container.innerHTML = "";
 
     projects.forEach((project, index) => {
         const element = document.createElement("article");
-
         element.className = "project-card";
 
-        const number = String(index + 1).padStart(2, "0");
+        // Simple number formatting without padding zeros (1, 2, 3, 4)
+        const number = String(index + 1);
 
-        const technologiesHTML = project.technologies
-            .map(
-                (technology) => `
-                    <span class="project-tech">
-                        <i class="${technology.icon}"></i>
-                        ${technology.name}
-                    </span>
-                `
-            )
-            .join("");
+        const technologiesHTML = project.technologies.map((tech) => `
+            <span class="project-tech">
+                <i class="${tech.icon}"></i>
+                ${tech.name}
+            </span>
+        `).join("");
 
         element.innerHTML = `
-            <div class="project-number">
-                ${number}
-            </div>
-
-            <div class="project-content">
-                <h3>${project.name}</h3>
-
-                <p>
-                    ${project.description}
-                </p>
-
-                <div class="project-technologies">
-                    ${technologiesHTML}
+            <div>
+                <div class="project-header-row">
+                    <div class="project-number">${number}</div>
+                    <a href="${project.github_url}" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Ver proyecto en GitHub">
+                        ↗
+                    </a>
                 </div>
-
-                <a
-                    href="${project.github_url}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                >
-                    Ver proyecto
-                    <span>↗</span>
-                </a>
+                <div class="project-content">
+                    <h3>${project.name}</h3>
+                    <p>${project.description}</p>
+                </div>
+            </div>
+            <div class="project-technologies">
+                ${technologiesHTML}
             </div>
         `;
 
         container.appendChild(element);
     });
 }
-
-
-// ==============================
-// INICIALIZACIÓN
-// ==============================
 
 function init() {
     loadProfile();
