@@ -1,360 +1,709 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Portfolio personal de José Félix, estudiante de Ingeniería Informática."
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio personal de José Félix, estudiante de Ingeniería Informática.">
     <title>José Félix — Ingeniería Informática</title>
 
-    <!-- Devicon -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    >
+    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Devicon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <!-- Combined Unique Stylesheet -->
+    <style>
+        :root {
+            --bg: #0c0d10;
+            --bg-surface: #14161b;
+            --bg-card: #1b1e26;
+            --bg-card-hover: #222631;
+
+            --text: #f3f4f6;
+            --text-soft: #9ca3af;
+            --text-muted: #6b7280;
+
+            --accent: #38ef7d;
+            --accent-glow: rgba(56, 239, 125, 0.15);
+            --accent-gradient: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(56, 239, 125, 0.4);
+
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --font-display: "Space Grotesk", sans-serif;
+            --font-body: "Plus Jakarta Sans", sans-serif;
+
+            --max-width: 1200px;
+            --nav-height: 80px;
+            --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 20px);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #0c0d10;
+        }
+
+        .container {
+            width: min(calc(100% - 48px), var(--max-width));
+            margin: 0 auto;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(12, 13, 16, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: min(calc(100% - 48px), var(--max-width));
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text);
+        }
+
+        .logo span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .hero {
+            min-height: 100vh;
+            padding-top: calc(var(--nav-height) + 40px);
+            padding-bottom: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            margin-bottom: 24px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 7vw, 6.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: var(--text-soft);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            height: 52px;
+            padding: 0 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+
+        .btn.primary {
+            background: var(--accent-gradient);
+            color: #0c0d10;
+            box-shadow: 0 10px 25px rgba(56, 239, 125, 0.25);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(56, 239, 125, 0.4);
+        }
+
+        .btn.secondary {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn.secondary:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card);
+            transform: translateY(-2px);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 0.85;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        #profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(105%);
+            transition: filter var(--transition);
+        }
+
+        .image-frame:hover #profile-image {
+            filter: grayscale(0%);
+        }
+
+        .image-caption {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding: 120px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 60px;
+        }
+
+        .section-title-group {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .timeline-list {
+            display: grid;
+            gap: 24px;
+        }
+
+        .timeline-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .timeline-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-subtitle {
+            color: var(--text-soft);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .timeline-content p {
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        .technology-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .technology-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all var(--transition);
+        }
+
+        .technology-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card);
+        }
+
+        .technology-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .technology-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .technology {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-soft);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+
+        .technology:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .technology i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            background: var(--bg-card);
+        }
+
+        .project-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .project-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--border);
+            line-height: 1;
+            transition: color var(--transition);
+        }
+
+        .project-card:hover .project-number {
+            color: var(--accent);
+        }
+
+        .project-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: all var(--transition);
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            color: #0c0d10;
+            border-color: var(--accent);
+        }
+
+        .project-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .project-content > p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .project-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tech {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .project-tech i {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 60px 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .hero-image-wrapper {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .projects-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 28px;
+            }
+            .project-card {
+                padding: 28px;
+            }
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- ========================================
-         NAVBAR
-    ========================================= -->
-
     <header class="navbar">
-
         <div class="nav-container">
-
             <a href="#home" class="logo">
-                José Félix<span>.</span>
+                José Félix<span></span>
             </a>
-
             <nav class="nav-links">
-
-                <a href="#formacion">
-                    01 Formación
-                </a>
-
-                <a href="#tecnologias">
-                    02 Stack
-                </a>
-
-                <a href="#experiencia">
-                    03 Experiencia
-                </a>
-
-                <a href="#portfolio">
-                    04 Proyectos
-                </a>
-
+                <a href="#formacion">01 Formación</a>
+                <a href="#tecnologias">02 Stack</a>
+                <a href="#experiencia">03 Experiencia</a>
+                <a href="#portfolio">04 Proyectos</a>
             </nav>
-
         </div>
-
     </header>
 
-
     <main>
-
-        <!-- ========================================
-             HERO
-        ========================================= -->
-
         <section id="home" class="hero">
-
             <div class="container hero-grid">
-
                 <div class="hero-content">
-
                     <div class="hero-eyebrow">
                         Ingeniería Informática
                     </div>
-
                     <h1 class="hero-title">
-                        José<br>
-                        Félix<span>.</span>
+                        José Félix
                     </h1>
-
-                    <p
-                        id="description"
-                        class="hero-description"
-                    ></p>
-
+                    <p id="description" class="hero-description"></p>
                     <div class="hero-buttons">
-
-                        <a
-                            href="CV_Jose_Felix.pdf"
-                            class="btn primary"
-                            download
-                        >
+                        <a href="CV_Jose_Felix.pdf" class="btn primary" download>
                             Descargar CV
                         </a>
-
-                        <a
-                            href="#portfolio"
-                            class="btn secondary"
-                        >
+                        <a href="#portfolio" class="btn secondary">
                             Ver proyectos
                         </a>
-
                     </div>
-
                 </div>
-
 
                 <div class="hero-image-wrapper">
-
                     <div class="image-frame">
-
-                        <img
-                            id="profile-image"
-                            src="profile.jpg"
-                            alt="Foto de José Félix"
-                        >
-
+                        <img id="profile-image" src="profile.jpg" alt="Foto de José Félix">
                     </div>
-
                     <div class="image-caption">
-
                         <span>Ciudad Real</span>
-
                         <span>2026</span>
-
                     </div>
-
                 </div>
-
             </div>
-
-
-            <div class="scroll-indicator">
-                Scroll to explore
-            </div>
-
         </section>
 
-
-        <!-- ========================================
-             FORMACIÓN
-        ========================================= -->
-
-        <section
-            id="formacion"
-            class="section"
-        >
-
+        <section id="formacion" class="section">
             <div class="container">
-
                 <div class="section-header">
-
-                    <span class="section-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h2 class="section-title">
-                            Formación
-                        </h2>
-
+                    <div class="section-title-group">
+                        <span class="section-number">01</span>
+                        <h2 class="section-title">Formación</h2>
                     </div>
-
                 </div>
-
-
-                <div
-                    id="education-container"
-                    class="education-list"
-                ></div>
-
+                <div id="education-container" class="timeline-list"></div>
             </div>
-
         </section>
 
-
-        <!-- ========================================
-             TECNOLOGÍAS
-        ========================================= -->
-
-        <section
-            id="tecnologias"
-            class="section"
-        >
-
+        <section id="tecnologias" class="section">
             <div class="container">
-
                 <div class="section-header">
-
-                    <span class="section-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h2 class="section-title">
-                            Tecnologías
-                        </h2>
-
+                    <div class="section-title-group">
+                        <span class="section-number">02</span>
+                        <h2 class="section-title">Tecnologías</h2>
                     </div>
-
                 </div>
-
-
-                <div
-                    id="technologies-container"
-                    class="technology-categories"
-                ></div>
-
+                <div id="technologies-container" class="technology-categories"></div>
             </div>
-
         </section>
 
-
-        <!-- ========================================
-             EXPERIENCIA
-        ========================================= -->
-
-        <section
-            id="experiencia"
-            class="section"
-        >
-
+        <section id="experiencia" class="section">
             <div class="container">
-
                 <div class="section-header">
-
-                    <span class="section-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h2 class="section-title">
-                            Experiencia
-                        </h2>
-
+                    <div class="section-title-group">
+                        <span class="section-number">03</span>
+                        <h2 class="section-title">Experiencia</h2>
                     </div>
-
                 </div>
-
-
-                <div
-                    id="experience-container"
-                    class="experience-list"
-                ></div>
-
+                <div id="experience-container" class="timeline-list"></div>
             </div>
-
         </section>
 
-
-        <!-- ========================================
-             PROYECTOS
-        ========================================= -->
-
-        <section
-            id="portfolio"
-            class="section"
-        >
-
+        <section id="portfolio" class="section">
             <div class="container">
-
                 <div class="section-header">
-
-                    <span class="section-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <h2 class="section-title">
-                            Proyectos
-                        </h2>
-
+                    <div class="section-title-group">
+                        <span class="section-number">04</span>
+                        <h2 class="section-title">Proyectos</h2>
                     </div>
-
                 </div>
-
-
-                <div
-                    id="projects-container"
-                    class="projects-list"
-                ></div>
-
+                <div id="projects-container" class="projects-list"></div>
             </div>
-
         </section>
-
     </main>
 
-
-    <!-- ========================================
-         FOOTER
-    ========================================= -->
-
     <footer>
-
         <div class="container footer-container">
-
             <div>
-
-                <div class="footer-name">
-                    José Félix
-                </div>
-
-                <div class="footer-copy">
-                    Ingeniería Informática · 2026
-                </div>
-
+                <div class="footer-name">José Félix</div>
+                <div class="footer-copy">© 2026 · Todos los derechos reservados.</div>
             </div>
-
-
             <div class="footer-links">
-
-                <a
-                    id="github-link"
-                    href="https://github.com/JoseFelixBarbRoj"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    GitHub ↗
-                </a>
-
-                <a
-                    id="linkedin-link"
-                    href="https://www.linkedin.com/in/tu-usuario"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LinkedIn ↗
-                </a>
-
+                <a id="github-link" href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a id="linkedin-link" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
-
         </div>
-
     </footer>
 
-
-    <!-- ========================================
-         JAVASCRIPT
-    ========================================= -->
-
     <script src="app.js"></script>
-
 </body>
 
 </html>
-```
