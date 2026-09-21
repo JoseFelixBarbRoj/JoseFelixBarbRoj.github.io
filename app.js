@@ -2,9 +2,7 @@ const profile = {
     name: "José Félix",
     title: "Estudiante de Ingeniería Informática",
     description: "Estudiante de Ingeniería Informática en la Universidad de Castilla-La Mancha, apasionado por el desarrollo de software, inteligencia artificial, análisis de datos y tecnologías web avanzadas.",
-    image: "profile.jpg",
-    github: "https://github.com/JoseFelixBarbRoj",
-    linkedin: "https://www.linkedin.com/in/tu-usuario"
+    github: "https://github.com/JoseFelixBarbRoj"
 };
 
 const education = [
